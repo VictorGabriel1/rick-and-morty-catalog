@@ -10,16 +10,10 @@ interface HeaderProps {
 }
 
 export default function Header({ toggleTheme, currentTheme }: HeaderProps) {
-  const theme = useTheme();
-
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <MdMenu
-          style={{ cursor: "pointer" }}
-          color={theme.header.menu}
-          size={40}
-        />
+        <MdMenu style={{ cursor: "pointer" }} size={40} />
         <Logo src="/rick_and_morty_logo.png" />
         <ToggleSlider
           barBackgroundColor="#181818"
@@ -28,6 +22,7 @@ export default function Header({ toggleTheme, currentTheme }: HeaderProps) {
           handleBackgroundColor="#fff"
           active={currentTheme === "dark"}
           onToggle={toggleTheme}
+          draggable={false}
         />
       </HeaderWrapper>
     </HeaderContainer>

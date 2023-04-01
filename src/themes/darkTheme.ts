@@ -9,4 +9,7 @@ export const darkTheme: DefaultTheme = {
   body: {
     background: "#3e3e3e",
   },
+  font: {
+    color: "#fff",
+  },
 };

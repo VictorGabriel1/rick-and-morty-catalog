@@ -4,6 +4,33 @@ query getCharacters($page: Int) {
       id
       name
       image
+      type
+      status
+      gender
+      species
+      episode {
+        id
+        air_date
+        episode
+        characters {
+          id
+          name
+        }
+      }
+      origin {
+        id
+        name
+        type
+        dimension
+        residents {
+          id
+          name
+        }
+      }
+      location {
+        id
+        name
+      }
     }
   }
 }

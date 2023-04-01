@@ -1,0 +1,29 @@
+query getAllCharactersWithFilter(
+  $page: Int
+  $name: String
+  $type: String
+  $status: String
+  $gender: String
+  $species: String
+) {
+  characters(
+    page: $page
+    filter: {
+      name: $name
+      type: $type
+      status: $status
+      gender: $gender
+      species: $species
+    }
+  ) {
+    results {
+      id
+      name
+      image
+      type
+      gender
+      species
+      status
+    }
+  }
+}

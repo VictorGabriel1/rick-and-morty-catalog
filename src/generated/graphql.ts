@@ -209,14 +209,58 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
+export type GetAllCharactersWithFilterQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  species?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetAllCharactersWithFilterQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, gender?: string | null, species?: string | null, status?: string | null } | null> | null } | null };
+
 export type GetCharactersQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null } | null> | null } | null };
+export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, status?: string | null, gender?: string | null, species?: string | null, episode: Array<{ __typename?: 'Episode', id?: string | null, air_date?: string | null, episode?: string | null, characters: Array<{ __typename?: 'Character', id?: string | null, name?: string | null } | null> } | null>, origin?: { __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null, residents: Array<{ __typename?: 'Character', id?: string | null, name?: string | null } | null> } | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null } | null } | null> | null } | null };
 
 
+export const GetAllCharactersWithFilterDocument = `
+    query getAllCharactersWithFilter($page: Int, $name: String, $type: String, $status: String, $gender: String, $species: String) {
+  characters(
+    page: $page
+    filter: {name: $name, type: $type, status: $status, gender: $gender, species: $species}
+  ) {
+    results {
+      id
+      name
+      image
+      type
+      gender
+      species
+      status
+    }
+  }
+}
+    `;
+export const useGetAllCharactersWithFilterQuery = <
+      TData = GetAllCharactersWithFilterQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables?: GetAllCharactersWithFilterQueryVariables,
+      options?: UseQueryOptions<GetAllCharactersWithFilterQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GetAllCharactersWithFilterQuery, TError, TData>(
+      variables === undefined ? ['getAllCharactersWithFilter'] : ['getAllCharactersWithFilter', variables],
+      fetcher<GetAllCharactersWithFilterQuery, GetAllCharactersWithFilterQueryVariables>(client, GetAllCharactersWithFilterDocument, variables, headers),
+      options
+    );
 export const GetCharactersDocument = `
     query getCharacters($page: Int) {
   characters(page: $page) {
@@ -224,6 +268,33 @@ export const GetCharactersDocument = `
       id
       name
       image
+      type
+      status
+      gender
+      species
+      episode {
+        id
+        air_date
+        episode
+        characters {
+          id
+          name
+        }
+      }
+      origin {
+        id
+        name
+        type
+        dimension
+        residents {
+          id
+          name
+        }
+      }
+      location {
+        id
+        name
+      }
     }
   }
 }

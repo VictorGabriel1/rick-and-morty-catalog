@@ -2,6 +2,7 @@ import Document from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
+  // previne a render inicial da pagina ficar sem estilo ao primeiro momento de carregamento
   static async getInitialProps(ctx: any) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
