@@ -7,7 +7,7 @@ import Card from "@/components/card";
 export default function Home() {
   const { data: chars } = useGetAllCharactersWithFilterQuery(
     graphqlRequestClient,
-    { name: "", page: 1 }
+    { name: "hole", page: 1 }
   );
 
   return (

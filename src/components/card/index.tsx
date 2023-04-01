@@ -5,7 +5,7 @@ import {
   ContainerCard,
   ImgCard,
   InfoCard,
-  InfoContainerCard,
+  InfoContainer,
   NameCard,
   StatusCard,
   WrapperCard,
@@ -31,8 +31,8 @@ export default function Card({
 }: CardProps) {
   return (
     <ContainerCard>
-      <InfoContainerCard>
-        <ImgCard src={image || ""} />
+      <ImgCard src={image || ""} />
+      <InfoContainer>
         <WrapperCard>
           <WrapperCard className="nameGender">
             <NameCard>{name}</NameCard>
@@ -48,10 +48,10 @@ export default function Card({
           </WrapperCard>
           <StatusCard status={status ? status : ""}>{status}</StatusCard>
         </WrapperCard>
-        <WrapperCard className="info">
+        <WrapperCard className="species">
           <InfoCard>Species: {species}</InfoCard>
         </WrapperCard>
-      </InfoContainerCard>
+      </InfoContainer>
     </ContainerCard>
   );
 }

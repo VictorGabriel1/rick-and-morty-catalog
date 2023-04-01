@@ -16,6 +16,9 @@ query getAllCharactersWithFilter(
       species: $species
     }
   ) {
+    info {
+      pages
+    }
     results {
       id
       name

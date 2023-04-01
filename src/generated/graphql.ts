@@ -219,7 +219,7 @@ export type GetAllCharactersWithFilterQueryVariables = Exact<{
 }>;
 
 
-export type GetAllCharactersWithFilterQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, gender?: string | null, species?: string | null, status?: string | null } | null> | null } | null };
+export type GetAllCharactersWithFilterQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', pages?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, gender?: string | null, species?: string | null, status?: string | null } | null> | null } | null };
 
 export type GetCharactersQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
@@ -235,6 +235,9 @@ export const GetAllCharactersWithFilterDocument = `
     page: $page
     filter: {name: $name, type: $type, status: $status, gender: $gender, species: $species}
   ) {
+    info {
+      pages
+    }
     results {
       id
       name

@@ -6,9 +6,9 @@ interface StatusCardProps {
 
 export const ContainerCard = styled.div`
   width: 300px;
-  height: 380px;
+  height: 400px;
   margin: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 5px;
   box-shadow: 0px 8px 20px black;
@@ -22,7 +22,11 @@ export const ImgCard = styled.img`
   border-radius: 5px 5px 0px 0px;
 `;
 
-export const InfoContainerCard = styled.div``;
+export const InfoContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  justify-content: space-between;
+`;
 
 export const NameCard = styled.span`
   position: relative;
@@ -34,7 +38,8 @@ export const NameCard = styled.span`
 `;
 
 export const WrapperCard = styled.div`
-  max-height: 50px;
+  max-height: 70px;
+  min-height: 30px;
   padding: 2.5px;
   width: 100%;
   flex-direction: row;
@@ -43,7 +48,7 @@ export const WrapperCard = styled.div`
   &.nameGender {
     justify-content: flex-start;
   }
-  &.info {
+  &.species {
     flex-direction: column;
   }
 `;
@@ -58,7 +63,12 @@ export const StatusCard = styled.span<StatusCardProps>`
   align-items: center;
   border-radius: 5px;
   background-color: ${({ status }) =>
-    status === "Alive" ? "green" : status === "Dead" ? "red" : "grey"};
+    // Verifica o status para definir a cor
+    status === "Alive" // vivo
+      ? "green"
+      : status === "Dead" // morto
+      ? "red"
+      : "grey"}; // nenhum dos dois (desconhecido)
 `;
 
 export const InfoCard = styled.span`
