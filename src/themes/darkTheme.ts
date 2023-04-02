@@ -12,4 +12,10 @@ export const darkTheme: DefaultTheme = {
   font: {
     color: "#fff",
   },
+  pagination: {
+    hover: "#cccccc",
+  },
+  filters: {
+    background: "#555555",
+  },
 };

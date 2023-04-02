@@ -12,4 +12,10 @@ export const lightTheme: DefaultTheme = {
   font: {
     color: "#181818",
   },
+  pagination: {
+    hover: "#585858",
+  },
+  filters: {
+    background: "#bfbfbf",
+  },
 };

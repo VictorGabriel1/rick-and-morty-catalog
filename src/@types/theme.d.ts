@@ -13,5 +13,11 @@ declare module "styled-components" {
     font: {
       color: string;
     };
+    pagination: {
+      hover: string;
+    };
+    filters: {
+      background: string;
+    };
   }
 }

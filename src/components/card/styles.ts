@@ -40,22 +40,21 @@ export const NameCard = styled.span`
 export const WrapperCard = styled.div`
   max-height: 70px;
   min-height: 30px;
-  padding: 2.5px;
+  padding: 5px;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   &.nameGender {
     justify-content: flex-start;
-  }
-  &.species {
-    flex-direction: column;
+    width: 200px;
   }
 `;
 
 export const StatusCard = styled.span<StatusCardProps>`
   display: flex;
-  width: 75px;
+  width: 100px;
+  margin: 5px;
   height: 20px;
   justify-content: center;
   color: #fff;
@@ -73,4 +72,5 @@ export const StatusCard = styled.span<StatusCardProps>`
 
 export const InfoCard = styled.span`
   width: 100%;
+  padding: 5px;
 `;

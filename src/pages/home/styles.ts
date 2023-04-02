@@ -1,6 +1,21 @@
 import styled from "styled-components";
 
-export const HomeCotainer = styled.div`
+export const ContainerHome = styled.div`
+  margin-top: 60px;
+  flex-direction: row;
+  .loading {
+    margin: 150px 0px;
+  }
+`;
+
+export const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CharsContainer = styled.div`
   width: 100%;
   height: 100%;
   flex-wrap: wrap;

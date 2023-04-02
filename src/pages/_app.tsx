@@ -7,6 +7,7 @@ import { darkTheme } from "@/themes/darkTheme";
 import { lightTheme } from "@/themes/lightTheme";
 import NextNProgress from "nextjs-progressbar";
 import Header from "@/components/header";
+import ReactLoading from "react-loading";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const localTheme = localStorage.getItem("@currentTheme"); // Verifica se o usuario já escolheu seu tema anteriormente
-    setCurentTheme(localTheme === "dark" ? "dark" : "light"); // se não, coloca como tema atual o light
+    setCurentTheme(localTheme === "light" ? "light" : "dark"); // se não, coloca como tema atual o dark
   }, []);
 
   // Função para alterar o tema e deixar salvo como preferencia local
@@ -36,7 +37,26 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Previne que a página seja formada até que useEffect escolha um tema
   if (!currentTheme) {
-    return <></>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+          width: "100%",
+          backgroundColor: "#181818",
+        }}
+      >
+        <ReactLoading
+          color="#00b5cc"
+          type="spin"
+          height={300}
+          width={300}
+          className="loading"
+        />
+      </div>
+    );
   }
 
   return (

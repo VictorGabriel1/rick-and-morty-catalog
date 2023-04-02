@@ -2,7 +2,7 @@ import * as styled from "styled-components";
 
 export const GlobalStyle = styled.createGlobalStyle`
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
 
   ::-webkit-scrollbar-track {
@@ -17,6 +17,9 @@ export const GlobalStyle = styled.createGlobalStyle`
     background: #555;
   }
 
+  ::-webkit-overflow-scrolling {
+  }
+
   * {
     box-sizing: border-box;
     padding: 0;
@@ -27,7 +30,7 @@ export const GlobalStyle = styled.createGlobalStyle`
   html,
   body,
   #__next {
-    min-height: 100%;
+    min-height: 100vh;
     min-width: 100%;
     font-family: sans-serif;
     color: ${({ theme }) => theme.font.color};
@@ -35,10 +38,21 @@ export const GlobalStyle = styled.createGlobalStyle`
       theme.body.background}; // background do tema atual
   }
 
+  input {
+    color: ${({ theme }) => theme.font.color};
+  }
+
   // todas as divs criadas já serão flex com sentido column por padrão
   div {
     display: flex;
     flex-direction: column;
+  }
+
+  // todos os botoes criadas já serão criados sem borda e com pointer ativo
+  button {
+    color: ${({ theme }) => theme.font.color};
+    border: none;
+    cursor: pointer;
   }
 
   a {

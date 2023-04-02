@@ -48,7 +48,7 @@ export default function Card({
           </WrapperCard>
           <StatusCard status={status ? status : ""}>{status}</StatusCard>
         </WrapperCard>
-        <WrapperCard className="species">
+        <WrapperCard>
           <InfoCard>Species: {species}</InfoCard>
         </WrapperCard>
       </InfoContainer>
