@@ -32,7 +32,7 @@ export default function Home() {
   function handleClearFilters() {
     setGenderFilter("");
     setStatusFilter("");
-    setStatusFilter("");
+    setSpeciesFilter("");
   }
 
   return (
@@ -53,7 +53,6 @@ export default function Home() {
             "Disease",
             "Robot",
             "Cronenberg",
-            "Planet",
           ]}
         />
         <FilterSelect
@@ -95,8 +94,8 @@ export default function Home() {
                 <ReactLoading
                   color="#00b5cc"
                   type="spin"
-                  height={300}
-                  width={300}
+                  height={200}
+                  width={200}
                   className="loading"
                 />
               ) : (
