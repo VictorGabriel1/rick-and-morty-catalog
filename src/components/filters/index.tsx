@@ -14,14 +14,20 @@ interface FilterProps {
 }
 
 export default function Filters({ isOpen, setIsOpen, children }: FilterProps) {
+  // variaveis responsaveis pela animação de entrada da aba de filtros
   const FilterVariants = {
-    visible: { width: 280, left: 0 },
+    visible: { width: 280, paddingLeft: 280 },
+    hidden: {
+      width: 0,
+      paddingLeft: 0,
+    },
+  };
+
+  const FilterWrapperVariants = {
+    visible: { width: 280, height: "100vh", left: 0 },
     hidden: {
       width: 0,
       left: -280,
-      transition: {
-        duration: 0.15,
-      },
     },
   };
 
@@ -32,7 +38,7 @@ export default function Filters({ isOpen, setIsOpen, children }: FilterProps) {
     >
       <WrapperFilters
         animate={isOpen ? "visible" : "hidden"}
-        variants={FilterVariants}
+        variants={FilterWrapperVariants}
       >
         <Title>Filters</Title>
         <ContainerClose>

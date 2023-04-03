@@ -1,4 +1,5 @@
 import graphqlRequestClient from "@/client/GraphQLClient";
+import { useRouter } from "next/router";
 import React from "react";
 import { TbGenderMale, TbGenderFemale, TbGenderAgender } from "react-icons/tb";
 import {
@@ -29,8 +30,10 @@ export default function Card({
   species,
   status,
 }: CardProps) {
+  const { push } = useRouter();
+
   return (
-    <ContainerCard>
+    <ContainerCard onClick={() => push(`/character/${id}`)}>
       <ImgCard src={image || ""} />
       <InfoContainer>
         <WrapperCard>

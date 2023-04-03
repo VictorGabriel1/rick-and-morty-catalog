@@ -221,12 +221,12 @@ export type GetAllCharactersWithFilterQueryVariables = Exact<{
 
 export type GetAllCharactersWithFilterQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', pages?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, gender?: string | null, species?: string | null, status?: string | null } | null> | null } | null };
 
-export type GetCharactersQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
+export type GetCharacterQueryVariables = Exact<{
+  id: Scalars['ID'];
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, status?: string | null, gender?: string | null, species?: string | null, episode: Array<{ __typename?: 'Episode', id?: string | null, air_date?: string | null, episode?: string | null, characters: Array<{ __typename?: 'Character', id?: string | null, name?: string | null } | null> } | null>, origin?: { __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null, residents: Array<{ __typename?: 'Character', id?: string | null, name?: string | null } | null> } | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null } | null } | null> | null } | null };
+export type GetCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, type?: string | null, status?: string | null, gender?: string | null, species?: string | null, episode: Array<{ __typename?: 'Episode', id?: string | null, air_date?: string | null, episode?: string | null } | null>, origin?: { __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null } | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null } | null } | null };
 
 
 export const GetAllCharactersWithFilterDocument = `
@@ -264,55 +264,45 @@ export const useGetAllCharactersWithFilterQuery = <
       fetcher<GetAllCharactersWithFilterQuery, GetAllCharactersWithFilterQueryVariables>(client, GetAllCharactersWithFilterDocument, variables, headers),
       options
     );
-export const GetCharactersDocument = `
-    query getCharacters($page: Int) {
-  characters(page: $page) {
-    results {
+export const GetCharacterDocument = `
+    query getCharacter($id: ID!) {
+  character(id: $id) {
+    id
+    name
+    image
+    type
+    status
+    gender
+    species
+    episode {
+      id
+      air_date
+      episode
+    }
+    origin {
       id
       name
-      image
       type
-      status
-      gender
-      species
-      episode {
-        id
-        air_date
-        episode
-        characters {
-          id
-          name
-        }
-      }
-      origin {
-        id
-        name
-        type
-        dimension
-        residents {
-          id
-          name
-        }
-      }
-      location {
-        id
-        name
-      }
+      dimension
+    }
+    location {
+      id
+      name
     }
   }
 }
     `;
-export const useGetCharactersQuery = <
-      TData = GetCharactersQuery,
+export const useGetCharacterQuery = <
+      TData = GetCharacterQuery,
       TError = unknown
     >(
       client: GraphQLClient,
-      variables?: GetCharactersQueryVariables,
-      options?: UseQueryOptions<GetCharactersQuery, TError, TData>,
+      variables: GetCharacterQueryVariables,
+      options?: UseQueryOptions<GetCharacterQuery, TError, TData>,
       headers?: RequestInit['headers']
     ) =>
-    useQuery<GetCharactersQuery, TError, TData>(
-      variables === undefined ? ['getCharacters'] : ['getCharacters', variables],
-      fetcher<GetCharactersQuery, GetCharactersQueryVariables>(client, GetCharactersDocument, variables, headers),
+    useQuery<GetCharacterQuery, TError, TData>(
+      ['getCharacter', variables],
+      fetcher<GetCharacterQuery, GetCharacterQueryVariables>(client, GetCharacterDocument, variables, headers),
       options
     );

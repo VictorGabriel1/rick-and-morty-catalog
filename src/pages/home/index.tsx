@@ -8,6 +8,7 @@ import SearchBar from "@/components/searchBar";
 import Filters from "@/components/filters";
 import ReactLoading from "react-loading";
 import FilterSelect from "@/components/filterSelect";
+import ClearFilters from "@/components/clearFilters";
 
 export default function Home() {
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
@@ -16,28 +17,30 @@ export default function Home() {
   const [genderFilter, setGenderFilter] = useState<string>("");
   const [speciesFilter, setSpeciesFilter] = useState<string>("");
   const [statusFilter, setStatusFilter] = useState<string>("");
-  const [typeFilter, setTypeFilter] = useState<string>("");
-
+  // query reponsavel por trazer os personagens
   const { data: chars, isLoading } = useGetAllCharactersWithFilterQuery(
     graphqlRequestClient,
     {
       name: searchName,
       page: currentPage,
-      gender: "",
-      species: "",
-      status: "",
-      type: "",
+      gender: genderFilter,
+      species: speciesFilter,
+      status: statusFilter,
     }
   );
 
-  useEffect(() => {
-    console.log(filterIsOpen);
-  }, [filterIsOpen]);
+  function handleClearFilters() {
+    setGenderFilter("");
+    setStatusFilter("");
+    setStatusFilter("");
+  }
 
   return (
     <ContainerHome>
       <Filters setIsOpen={setFilterIsOpen} isOpen={filterIsOpen}>
         <FilterSelect
+          setFilter={setSpeciesFilter}
+          currentFilter={speciesFilter}
           name="Species"
           options={[
             "Human",
@@ -54,21 +57,18 @@ export default function Home() {
           ]}
         />
         <FilterSelect
-          name="f"
-          options={[
-            "Human",
-            "Alien",
-            "Humanoid",
-            "Poopybutthole",
-            "Mythological",
-            "Unknown",
-            "Animal",
-            "Disease",
-            "Robot",
-            "Cronenberg",
-            "Planet",
-          ]}
+          name="Status"
+          setFilter={setStatusFilter}
+          currentFilter={statusFilter}
+          options={["Alive", "Dead", "Unknown"]}
         />
+        <FilterSelect
+          name="Gender"
+          setFilter={setGenderFilter}
+          currentFilter={genderFilter}
+          options={["female", "male", "genderless", "unknown"]}
+        />
+        <ClearFilters handleClear={handleClearFilters} />
       </Filters>
       <Content>
         <SearchBar
